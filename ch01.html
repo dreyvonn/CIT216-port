@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Hello World</title>
+   </head>
+	<script>
+		function showCongratulations(buttonPressed) {
+			document.getElementById("result_display").innerHTML =
+				"Congratulations, you did it!<p>You got the page to update</p>"
+			buttonPressed.innerHTML = "Click me again"
+		 }
+	</script>
+	<style>
+		 body {
+			  background-color: red;
+		 }
+	</style>
+   <body>
+		<button onclick="showCongratulations(this)">Click Me!</button>
+		<section id="result_display"></section>
+   </body>
+</html>
