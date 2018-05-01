@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function addAndSaveCustomer() {
+                var aName = document.getElementById("name_input").value;
+                var anAge = document.getElementById("age_input").value * 1;
+                var anInseam = document.getElementById("inseam_input").value * 1;
+                var aClothingCustomer = {
+                    "name":aName,
+                    "age":anAge,
+                    "inseam":anInseam
+                }
+            }
+        </script>
+        <body>
+        
+        </body>
+    </head>
+    
+    <body onload="showAllCustomers()">
+        <section id="customer_entry_area">
+            <input id="name_input" placeholder="Name">
+            <input id="age_input" placeholder="Age">
+            <input id="inseam_input" placeholder="Inseam">
+            <br>
+            <img src="add_customer.png" onclick="addAndSaveCustomer()">
+        </section>
+        <section id="all_customers_display"></section>
+    </body>
+</html>
