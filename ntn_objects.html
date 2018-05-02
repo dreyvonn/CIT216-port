@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<hmtl>
+    <head>
+        <script>
+            //const spiderman = {};
+
+            const spiderman = new Object();
+
+            //const ironMan = { name: name, realName: realName };
+            function display(){
+                const superman = {
+                    name: 'Superman',
+                    'real name': 'Clark Kent',
+                    height: 75,
+                    weight: 235,
+                    hero: true,
+                    villian: false,
+                    allies: ['Batman','Supergirl','Superboy'],
+
+                    fly() {
+                    return 'Up, up and away!';
+                    }
+                };
+                document.getElementById("display").innerHTML = superman.fly() + " - " + superman['real' + " " + 'name'];
+            }
+        </script>
+    </head>
+    <body>
+        <button id="disButton" onclick="display()">Function</button>
+        <br>
+        <span id="display"></span>
+    </body>
+</hmtl>
