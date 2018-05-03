@@ -68,6 +68,27 @@
                     this.inputOutput.value = '';
                 },
                 
+                storeValue : function() {
+                    this.num1 = this.inputOutput.value;
+                    this.opertaion = button.innerHTML;
+                    this.clear();  
+                },
+                
+                calculate : function() {
+                    switch (this.opertaion) {
+                        case '+':
+                            break;
+                        case '-':
+                            break;
+                        case '/':
+                            break;
+                        case 'X':
+                            break;
+                        default: 
+                            this.inputOutput.value = "error";
+                    }
+                },
+                
                 buttonClicked : function(button) {
                   console.log(button.innerHTML);
                   let inputBox = this.inputOutput;
@@ -78,14 +99,11 @@
                     case 'C': this.clear();
                       break;
                     case '/':
-                      break;
                     case 'X':
-                      break;
                     case '-':
+                    case '+': this.storeValue();
                       break;
-                    case '+':
-                      break;
-                    case '=':
+                    case '=': this.calculate();
                       break;
                     default:
                       //if it made it to here it's a number
