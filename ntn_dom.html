@@ -7,6 +7,22 @@
             function doThings() {
                 const h1 = document.getElementById("title");
             }
+            
+            function addClass(element.className) {
+                if (element.className) {
+                    element.className = element.className + ' ' + newClass;
+                }
+                else {
+                    element.className = newClass;
+                }
+                return element.className;
+            }
+            
+            function creatElement (tag,text) {
+                const el = document.createElement(tag);
+                el.textContent = text;
+                return el;
+            }
         </script>
     </head>
     <body>
