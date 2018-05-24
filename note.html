@@ -2,8 +2,13 @@
 <html style="height: 100%">
     <head>
         <style>
-            .submitDiv {
-                
+            #addSection {
+                /*width: 500px;
+                padding-left: 5px;
+                border: none;
+                border-radius: 5px;
+                box-shadow: 0px 0px 5px #666666 inset;
+                text-indent: 5px;*/
             }
             .textBox {
                 width: 90%;
@@ -12,22 +17,42 @@
                 margin-left: auto;
                 margin-right: auto;
                 margin-top: 20px;
+                margin-bottom: 20px;
                 font-size: 3em;
                 border: 3px solid #cccccc;
                 padding: 5px;
             }
-            button {
-                
+            input {
+                float: right;
+                margin-right: 30px;
+                margin-top: 10px;
             }
         </style>
         <script>
-        
+            function addNote(){
+                var dateAndTime = new Date();
+                var noteContent = document.getElementById("noteContent").value;
+                var note = dateAndTime.toLocaleString();
+                note += "<p>" + noteContent + "</p>";
+                
+                var previousNotes = localStorage.getItem("allNotes");
+                var allNotes = JSON.parse(previousNotes)
+                if(allNotes == null) {
+                    allNotes = [];
+                }
+                allNotes.push(note);
+                var allNotesString = JSON.stringify(allNotes);
+                localStorage.setItem("allNotes",allNotesString);
+                //showAllNotes();
+                document.getElementById("noteContent").value = null;
+            }
         </script>
     </head>
     <body style="height: 100%">
-        <div class="submitDiv">
-            <textarea type="text" class="textBox" placeholder="Add Note..."></textarea>
-            <button>+</button>
-        </div>
+        <section id="addSection">
+            <textarea type="text" class="textBox" placeholder="Add Note..." id="noteContent"></textarea>
+            <input type="button" value="+" id="addButton" onclick="addNote()">
+        </section>
+        <section id="displayArea"></section>
     </body>
 </html>
