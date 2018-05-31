@@ -43,8 +43,26 @@
                 allNotes.push(note);
                 var allNotesString = JSON.stringify(allNotes);
                 localStorage.setItem("allNotes",allNotesString);
+                console.log(allNotesString);
                 //showAllNotes();
                 document.getElementById("noteContent").value = null;
+                showAllNotes();
+            }
+            function clear() {
+                localStorage.clear();
+            }
+            function showAllNotes(){
+                var storedNotes = localStorage.getItem("allNotes");
+                var allNotes = JSON.parse(storedNotes);
+                if (allNotes != null){
+                    var noteDisplayer = document.getElementById("displayArea");
+                    noteDisplayer.innerHTML = null;
+                    var numNotes = allNotes.length;
+                    for (var i = 0; i < numNotes; i++) {
+                        var aNote = allNotes[i];
+                        noteDisplayer.innerHTML += "<hr><p>" + aNote + "</p>";
+                    }
+                }
             }
         </script>
     </head>
@@ -52,6 +70,7 @@
         <section id="addSection">
             <textarea type="text" class="textBox" placeholder="Add Note..." id="noteContent"></textarea>
             <input type="button" value="+" id="addButton" onclick="addNote()">
+            <input type="button" value="-" id="clearButton" onclick="clear()">
         </section>
         <section id="displayArea"></section>
     </body>
