@@ -29,10 +29,28 @@
             }
         </style>
         <script>
+            var notes = [];
+            
+            function Note(dateTime, content) {
+                this.dateTime = dateTime;
+                this.content = content;
+            }
+            
             function addNote(){
                 var dateAndTime = new Date();
                 var noteContent = document.getElementById("noteContent").value;
-                var note = dateAndTime.toLocaleString();
+                var newNote = new Note(dateAndTime.toLocaleString(), noteContent);
+                notes.unshift(newNote);
+                document.getElementById("noteContent").value = null;
+                
+                showAllNotes();
+                
+                /*for (var i = 0; i < notes.length; i++) {
+                    console.log(notes[i].dateTime);
+                    console.log(notes[i].content);
+                }*/
+                
+                /*var note = dateAndTime.toLocaleString();
                 note += "<p>" + noteContent + "</p>";
                 
                 var previousNotes = localStorage.getItem("allNotes");
@@ -40,19 +58,25 @@
                 if(allNotes == null) {
                     allNotes = [];
                 }
-                allNotes.push(note);
+                allNotes.unshift(note);
                 var allNotesString = JSON.stringify(allNotes);
                 localStorage.setItem("allNotes",allNotesString);
                 console.log(allNotesString);
-                //showAllNotes();
-                document.getElementById("noteContent").value = null;
-                showAllNotes();
+                showAllNotes();*/
             }
             function clear() {
                 localStorage.clear();
             }
             function showAllNotes(){
-                var storedNotes = localStorage.getItem("allNotes");
+                var noteDisplay = document.getElementById("displayArea");
+                noteDisplay.innerHTML = null;
+                
+                for (var i = 0; i < notes.length; i++) {
+                    noteDisplay.innerHTML += "<hr><p>" + notes[i].dateTime + "</p><p>" + notes[i].content + "</p>";
+                    console.log(notes.length);
+                }
+                
+                /*var storedNotes = localStorage.getItem("allNotes");
                 var allNotes = JSON.parse(storedNotes);
                 if (allNotes != null){
                     var noteDisplayer = document.getElementById("displayArea");
@@ -62,7 +86,7 @@
                         var aNote = allNotes[i];
                         noteDisplayer.innerHTML += "<hr><p>" + aNote + "</p>";
                     }
-                }
+                }*/
             }
         </script>
     </head>
