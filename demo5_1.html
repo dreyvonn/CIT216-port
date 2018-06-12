@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Calc</title>
+        <meta name="viewport" content="width=device-witdth, initial-scale=1">
+        <script>
+            function add(){
+                var first = document.getElementById("input").value;
+                var second = document.getElementById("input2").value;
+                var result = parseFloat(first) + parseFloat(second);
+                document.getElementById("result").innerHTML = result;
+                document.getElementById("input").value = null;
+                document.getElementById("input2").value = null;
+            }
+            function subtract(){
+                var first = document.getElementById("input").value;
+                var second = document.getElementById("input2").value;
+                var result = parseFloat(first) - parseFloat(second);
+                document.getElementById("result").innerHTML = result;
+                document.getElementById("input").value = null;
+                document.getElementById("input2").value = null;
+            }
+            function divide(){
+                var first = document.getElementById("input").value;
+                var second = document.getElementById("input2").value;
+                if (second == 0){
+                    document.getElementById("error").innerHTML = "Cannot divide by 0";   
+                }
+                else {
+                    var result = parseFloat(first) / parseFloat(second);
+                    document.getElementById("result").innerHTML = result;
+                }
+                document.getElementById("input").value = null;
+                document.getElementById("input2").value = null;
+                    
+            }
+        </script>
+    </head>
+    <body>
+        <input type="number" id="input" value="">
+        <input type="number" id="input2" value="">
+        <hr>
+        <div>
+            <button id="addButton" onclick="add()">+</button>
+            <button id="subButton" onclick="subtract()">-</button>
+            <button id="divButton" onclick="divide()">/</button>
+            Result:
+            <span id="result"></span>
+            <span id="error"></span>
+        </div>
+    </body>
+</html>

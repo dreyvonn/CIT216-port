@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            var colors = ["blue", "red", "yellow", "black", "white"];
+            
+            console.dir(colors);
+            
+            for(var i = 0; i < colors.length; i++) {
+                console.log(colors[i]);
+            }
+            
+            for(let color of colors) {
+                console.log(color);
+            }
+            
+            //concise way to use the map function
+            const colorsChange = colors.map(color => color + 'ever');
+            
+            for(let color of colorsChange) {
+                console.log(color);
+            }
+            
+        </script>
+    </head>
+    <body>
+    
+    </body>
+</html>

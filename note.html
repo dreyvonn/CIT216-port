@@ -64,16 +64,30 @@
                 console.log(allNotesString);
                 showAllNotes();*/
             }
-            function clear() {
-                localStorage.clear();
+            function deleteNote(dateTime) {
+                console.log(dateTime);
+                console.log("cleared");
+                
+                elementRemoved = notes.filter(function(el) {
+                    return el.dateTime !== dateTime;
+                });
+                
+                notes = elementRemoved;
+                showAllNotes();
             }
             function showAllNotes(){
                 var noteDisplay = document.getElementById("displayArea");
                 noteDisplay.innerHTML = null;
                 
                 for (var i = 0; i < notes.length; i++) {
-                    noteDisplay.innerHTML += "<hr><p>" + notes[i].dateTime + "</p><p>" + notes[i].content + "</p>";
-                    console.log(notes.length);
+                    /*var btn = document.createElement("BUTTON");
+                    var t = document.createTextNode("Delete");
+                    btn.appendChild(t);
+                    btn.onclick = function() { clear(); };
+                    document.body.appendChild(btn);*/
+                    
+                    dateAndTime = notes[i].dateTime;
+                    noteDisplay.innerHTML += "<hr><p>" + dateAndTime + "</p><p>" + notes[i].content + "</p>" + "<button onclick='deleteNote(dateAndTime)'>Delete</button>";
                 }
                 
                 /*var storedNotes = localStorage.getItem("allNotes");
@@ -94,7 +108,6 @@
         <section id="addSection">
             <textarea type="text" class="textBox" placeholder="Add Note..." id="noteContent"></textarea>
             <input type="button" value="+" id="addButton" onclick="addNote()">
-            <input type="button" value="-" id="clearButton" onclick="clear()">
         </section>
         <section id="displayArea"></section>
     </body>
