@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            /*function three() { unicorn(); }
+            function two() { three(); }
+            function one() { two(); }
+            one();*/
+            
+            /*'use strict'; 
+            x = 3.14;*/
+            
+            /*function amIOldEnough(age) {
+                if (age < 12) {
+                    console.log('In the if with ${age}');
+                    return 'No, sorry.';
+                }
+                else if (age < 18) {
+                    console.log('In the else-if with ${age}');
+                    return 'Only if you are acompanied by an adult.';
+                }
+                else {
+                    console.log('In the else with ${age}');
+                    return 'Yep, come on in!';
+                }
+            }
+            console.log(amIOldEnough(12));
+            
+            const error = new Error('Something went wrong');*/
+            
+            function squareRoot(number) {
+                'use strict';
+                if (number < 0) {
+                    throw new RangeError("You can't find the square root of negative numbers");
+                }
+                return Math.sqrt(number);
+            };
+            
+            console.log(squareRoot(-121));
+            
+            test('square root of 4 is 2', () => {
+                expect(squareRoot(4)).toBe(2);
+            });
+        </script>
+    </head>
+    <body>
+    
+    </body>
+</html>
