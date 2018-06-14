@@ -2,6 +2,112 @@
 <html>
     <head>
         <script>
+            /*function sayHello() {
+                return 'Hello, my name is ${ this.name }';
+            }*/
+            
+            /*const clark = { name: 'Clark' };
+            const bruce = { name: 'Bruce' };*/
+            
+            /*console.log(sayHello.call(clark));
+            console.log(sayHello.call(bruce));*/
+            
+            /*function sayHello(greeting='Hello') {
+                return '${ greeting }, my name is ${ this.name }';
+            }
+            
+            console.log(sayHello.call(clark, 'How do you do'));*/
+            
+            function square(x) {
+                square.cache = square.cache || {};
+                if (!square.cache[x]) {
+                    square.cache[x] = x*x;
+                }
+                return square.cache[x];
+            }
+            
+            console.log(square(3));
+            console.log(square(-11));
+            
+            (function() {
+                const temp = 'World';
+                console.log('Hello' + temp);
+            })();
+            
+            function party() {
+                console.log('wow this is amazing!');
+                party = function(){
+                    console.log('been there, got the t-shirt');
+                }
+            }
+            
+            party();
+            
+            function ride() {
+                if (window.unicorn) {
+                    ride = function() {
+                        return 'Riding on a unicorn is the best';
+                    }
+                }
+                else {
+                    ride = function() {
+                        return 'Riding on a pony is still pretty good';
+                    }
+                }
+                return ride();
+            }
+            
+            console.log(ride());
+            
+            //Recursive functions
+            function factorial(n) {
+                if (n === 0) {
+                    return 1;
+                }
+                else {
+                    return n * factorial(n - 1);
+                }
+            }
+            
+            console.log(factorial(10));
+            
+            //callback hell
+            /*login(username, function(error, user) {
+                if (error) {
+                    throw error;
+                } else {
+                    getPlayerInfo(user.id, function(error,info){
+                        if(error){
+                            throw error;
+                        } else {
+                            loadGame{info, function(error,game) {
+                                if(error){
+                                    throw error;
+                                } else {
+                                    //code here
+                                }
+                            }}
+                        }
+                    })
+                }
+            });*/
+            
+            //creating a promise
+            const promise = new Promise( (resolve, reject) => {
+                if (success) {
+                    resolve(value);
+                } else {
+                    reject(error);
+                }
+            });
+            
+            const dice = {
+                sides: 6,
+                roll() {
+                    return Math.floor(this.sides * Math.random()) + 1;
+                }
+            }
+            
             
         </script>
     </head>
