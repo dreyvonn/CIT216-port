@@ -93,7 +93,7 @@
             });*/
             
             //creating a promise
-            const promise = new Promise( (resolve, reject) => {
+            /*const promise = new Promise( (resolve, reject) => {
                 if (success) {
                     resolve(value);
                 } else {
@@ -108,7 +108,50 @@
                 }
             }
             
+            function random(a,b,callback) {
+                if (b === undefined) b = a, a = 1;
+                const result = Math.floor((b-a+1) * Math.random()) + a;
+                if (callback) {
+                    result = callback(result);
+                }
+                return result;
+            }
+            */
+            //closures
+            /*const outside = 'In the global scope';
+            function fn() {
+                const inside = 'In the function scope';
+            }
             
+            console.log(outside);
+            console.log(inside);*/
+            
+            function outer() {
+                const outside = 'Outside!';
+                function inner() {
+                    const inside = "inside";
+                    console.log(outside);
+                    console.log(inside);
+                }
+                console.log(outside);
+                inner();
+            }
+            outer();
+            
+            function reverse(string) {
+                return string.split('').reverse().join('');
+            }
+            console.log(reverse('Hello JavaScript'));
+            
+            const number = 42;
+            
+            function pureAdd(x, y) {
+                return x + y;
+            }
+            
+            result = pureAdd(number, 10);
+            
+            console.log(result);
         </script>
     </head>
     <body>
