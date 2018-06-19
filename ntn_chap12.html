@@ -1,0 +1,35 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <script>
+            const Dice = function(sides=6) {
+                this.sides = sides;
+                this.roll = function() {
+                    return Math.floor(this.sides * Math.random() +1);
+                }
+            }
+            
+            const redDice = new Dice();
+            console.log(redDice);
+            
+            //class declarations
+            class Dice2 {
+                constructor(sides=6) {
+                    this.sides = sides;
+                }
+                roll() {
+                    return Math.floor(this.sides * Math.random() + 1);
+                }
+                static description() {
+                    return 'A way of choosing random numbers';
+                }
+            }
+            
+            const blueDice = new Dice2(20);
+            console.log(blueDice);
+            console.log(blueDice.description);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
