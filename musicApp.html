@@ -2,18 +2,18 @@
 <html>
     <head>
         <script>          
-            var accessToken = "BQAbnRXGFJfGxHPKWkX8EJRYXUYfjW_DweH2YE5ydZtHJ-FRnLwKt0MLrPyVHqAXh_oSqqXMoYGrYjuqitK3CL87yvrMzEWFEBjoqFTzPk0V03Zs9UXLhZeSHo6J6RIWBONtefg8EJf0b-xGJsloHsAH7H_RsbU";
+            var accessToken = "BQA0WhGZ6fRKGf12CTc7OxzRVoV-KIsp2jyaMvRrPtDrr1OI-2Nd432ZpedsoKyZSRa7itzBgcexnA2mJUXSnXqIkiRt_8RHbTHwxjCc_LqI3dE9Y-TsFD3DZiGh-QB4CvzEDwMqw53k7e1se88w7mzmXuBgooM";
             
             var song;
-            function getMusicData(artist) {
+            function getMusicData() {
                 var topSongsObj;
-                var topSongs;
+                var artist = document.getElementById('query').value;
+                //console.log(artist);
+                //var topSongs;
+                var queryString = 'q=' + artist + '&type=artist';
                 
-                var artistIdUrl = 'https://api.spotify.com/v1/search?q=Daft+Punk&type=artist';
+                var artistIdUrl = 'https://api.spotify.com/v1/search?' + queryString;
                 //https://api.spotify.com/v1/search?q=Daft+Punk&type=artist
-                
-                //var url = 'https://api.spotify.com/v1/artists/' + artistId + '/top-tracks?country=US';
-                var url = 'https://api.spotify.com/v1/artists/4tZwfgrHOc3mvqYlEYSvVi/top-tracks?country=US';
                 
                 var myHeaders = new Headers({
                     'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Bearer ' + accessToken
@@ -24,31 +24,51 @@
                 fetch(artistIdUrl, {headers:myHeaders}).then(function(response) {
                     return response.json();
                 })
+                .then(function(text) {
+                    artistId = text.artists.items[0].id;
+                    //console.log(text);
+                    
+                    var url = 'https://api.spotify.com/v1/artists/' + artistId + '/top-tracks?country=US';
+                    
+                    fetch(url, {headers:myHeaders}).then(function(response) {
+                        return response.json();
+                    })
                     .then(function(text) {
-                        artistId = text;
                         //console.log(text);
+                        //console.log(text.tracks[0].name);
+                        
+                        var resultsString = '<br>';
+    
+                        for(var i = 0; i < 10; i++){
+                            resultsString += text.tracks[i].name + '<br>';
+                            //console.log(resultsString);
+                        }
+                        
+                        document.getElementById('results').innerHTML = resultsString;
+                    })
                     })
                     
-                fetch(url, {headers:myHeaders}).then(function(response) {
-                    return response.json();
-                })
-                    .then(function(text) {
-                        topSongs = text;
-                        
-                    })
             }
         </script>
         <style>
+            /*.container {
+                margin: auto;
+                width: 50%;
+                border 3px solid #73AD21;
+                padding: 10px;
+                background-color: red;
+            }
+            .title {
+                color: white;
+            }*/
         </style>
     </head>
     <body>
-        <button type="button" onclick="getMusicData('michl')">Get Music</button>
-        <p id="test"></p>
         <div class="container">
-            <h1>Search for an Artist</h1>
+            <h1 class="title">Search for an Artist</h1>
             <form id="search-form">
                 <input type="text" id="query" value="" class="form-control" placeholder="Type an Artist Name"/>
-                <input type="submit" id="search" class="btn btn-primary" onclick="getMusicData('https://api.spotify.com/v1/search?q=year%3A2001&type=artist&market=US')" value="Search"/>
+                <input type="button" id="search" class="btn btn-primary" onclick="getMusicData()" value="Search"/>
             </form>
             <div id="results"></div>
         </div>
