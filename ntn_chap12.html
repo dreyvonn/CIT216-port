@@ -28,6 +28,49 @@
             const blueDice = new Dice2(20);
             console.log(blueDice);
             console.log(blueDice.description);
+            
+            class Turtle {
+                constructor(name) {
+                    this.name = name;
+                    this.weapon = 'hands';
+                }
+                sayHi() {
+                    return 'Hi dude, my name is ${this.name}';
+                }
+                attack() {
+                    return "Feel the power of my ${this.weapon}";
+                }
+            }
+            
+            const leo = new Turtle('Leonardo');
+            console.log(leo);
+            console.log(leo.hasOwnProperty('name'));
+            leo.weapon = null;
+            console.log(leo.hasOwnProperty('weapon'))
+            console.log(leo.weapon);
+            console.log(leo.attack());
+            
+            class Turtle2 {
+                constructor(name, color) {
+                    this.name = name;
+                    let _color = color;
+                    this.setColor = color => { 
+                        if(typeof color === 'string') {
+                            return _color = color; 
+                        }
+                        else {
+                            throw new Error('Color must be a string');
+                        }
+                    }
+                    this.getColor = () => _color;
+                }
+            }
+            
+            const raph = new Turtle2('Raphael', 'Red');
+            console.log(raph);
+            console.log(raph.getColor());
+            /*raph.setColor(3);
+            console.log(raph.getColor());*/
         </script>
     </head>
     <body>
